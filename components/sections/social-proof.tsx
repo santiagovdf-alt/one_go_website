@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Star, Quote } from "lucide-react"
 import { Card } from "@/components/ui/card"
+import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee"
 
 const stats = [
   { value: "50+", label: "Businesses Transformed" },
@@ -13,22 +13,44 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "ONE GO transformed our customer service. Our response time dropped from hours to seconds, and customer satisfaction is through the roof.",
-    author: "María García",
-    role: "CEO, RetailTech Solutions",
-    rating: 5,
+    author: {
+      name: "María García",
+      handle: "CEO, RetailTech Solutions",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "ONE GO transformed our customer service. Our response time dropped from hours to seconds, and customer satisfaction is through the roof.",
   },
   {
-    quote: "The ROI was visible within the first month. Their AI chatbot handles 70% of our support tickets automatically.",
-    author: "Carlos Rodríguez",
-    role: "Operations Director, TechStart Madrid",
-    rating: 5,
+    author: {
+      name: "Carlos Rodríguez",
+      handle: "Operations Director, TechStart Madrid",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "The ROI was visible within the first month. Their AI chatbot handles 70% of our support tickets automatically.",
   },
   {
-    quote: "Finally, an AI agency that speaks our language and understands SME needs. Not just consultants—true partners.",
-    author: "Laura Martínez",
-    role: "Founder, Digital Innovations",
-    rating: 5,
+    author: {
+      name: "Laura Martínez",
+      handle: "Founder, Digital Innovations",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Finally, an AI agency that speaks our language and understands SME needs. Not just consultants—true partners.",
+  },
+  {
+    author: {
+      name: "Javier Sánchez",
+      handle: "CTO, InnovateES",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "The implementation was seamless. Their team guided us every step of the way, and the results exceeded our expectations.",
+  },
+  {
+    author: {
+      name: "Ana Torres",
+      handle: "Marketing Director, GrowthCo",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+    },
+    text: "Working with ONE GO has been a game-changer. Our marketing automation now runs like clockwork, saving us 15 hours per week.",
   },
 ]
 
@@ -55,55 +77,13 @@ export function SocialProof() {
           ))}
         </div>
 
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-montserrat font-bold text-4xl md:text-5xl mb-4">
-            TRUSTED BY BUSINESSES ACROSS SPAIN
-          </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Don&apos;t just take our word for it—hear from our clients
-          </p>
-        </motion.div>
-
-        {/* Testimonials */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="h-full p-6 bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <Quote className="w-8 h-8 text-white/20 mb-4" />
-                <p className="text-white/90 mb-6 leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-lg font-bold">
-                    {testimonial.author.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">{testimonial.author}</div>
-                    <div className="text-sm text-white/60">{testimonial.role}</div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        {/* Testimonials Marquee */}
+        <TestimonialsSection
+          title="TRUSTED BY BUSINESSES ACROSS SPAIN"
+          description="Don't just take our word for it—hear from our clients"
+          testimonials={testimonials}
+          className="bg-transparent"
+        />
 
         {/* Case Study Teaser */}
         <motion.div
@@ -116,7 +96,7 @@ export function SocialProof() {
           <Card className="p-8 bg-white/5 border-white/10 backdrop-blur-sm">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
-                <h3 className="font-montserrat font-bold text-2xl mb-2">
+                <h3 className="font-montserrat font-bold text-2xl mb-2 text-white">
                   How a Málaga Real Estate Agency 3X&apos;d Their Lead Response Time
                 </h3>
                 <p className="text-white/70">
